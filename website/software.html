@@ -38,10 +38,6 @@
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
-
-	<!-- bibtex-js -->
-	<script src="js/bibtexParse.js"></script>
-
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -59,10 +55,10 @@
 				<div class="row">
 					<div class="col-xs-13 text-right menu-1">
 						<ul>
-                            <li><a href="index.html">Home</a></li>
-							<li><a href="index.html#about">About</a></li>
-                            <li class="active"><a href="publications.html">Publications</a></li>
-							<li><a href="software.html">Software</a></li>
+							<li ><a href="index.html">Home</a></li>
+							<li ><a href="index.html#about">About</a></li>
+							<li ><a href="publications.html">Publications</a></li>
+							<li class="active"><a href="software.html">Software</a></li>
                             <li><a href="team.html">Team</a></li>
 						</ul>
 					</div>
@@ -72,76 +68,18 @@
 		</div>
 	</nav>
 
-    <!-- fh5co-wireframe   fh5co-features-->
-	<div id="fh5co-wireframe">
+    <div id="fh5co-about">
 		<div class="container">
-			<div class="row animate-box" id="about">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Project Publications</h2>
-				</div>
-			</div>
-			
 			<div class="row animate-box">
-				<div id="output"></div>
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>Software</h2>
+				</div>
 
-                <script>
-                    fetch('publications.bib')
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Error al cargar el archivo');
-                            }
-                            return response.text();
-                        })
-                        .then(data => {
-							const bibData = bibtexParse.toJSON(data);
-							const output = document.getElementById('output');
-					
-							let content = '';
-					
-							bibData.forEach(entry => {
-								const tags = entry.entryTags;
-								let entryText = '<div class="publication">';
-					
-								// Título aparte
-								if (tags.title) {
-									entryText += `<h3>${tags.title}</h3>`;
-								} else {
-									entryText += `<h3>Untitled</h3>`;
-								}
-					
-								// Construcción de la información en un solo <p>
-								let details = '';
-					
-								if (tags.author) {
-									details += `${tags.author}. `;
-								}
-								if (tags.booktitle) {
-									details += `<em>${tags.booktitle}</em>. `;
-								}
-								if (tags.publisher) {
-									details += `${tags.publisher}. `;
-								}
-								if (tags.series) {
-									details += `${tags.series}. `;
-								}
-								if (tags.year) {
-									details += `${tags.year}. `;
-								}
-								if (tags.url) {
-									details += `<a href="${tags.url}" target="_blank">${tags.url}</a>. `;
-								}
-					
-								entryText += `<p>${details}</p>`;
-								entryText += '</div>';
-								content += entryText;
-							});
-					
-							output.innerHTML = content;
-						})
-                        .catch(error => {
-                            document.getElementById('output').textContent = `Error: ${error.message}`;
-                        });
-                </script>
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<p style="color: #333; font-size: 20px;">MASEO: A Multi-Agent System for Explainable Ontology Generation (<a href="https://github.com/oeg-upm/maseo">GitHub</a>)</p>
+                    <p style="color: #333; font-size: 20px;">CQ4OE: A benchmark for assessing the LLM-assisted ontology generation from competency questions (<a href="https://github.com/oeg-upm/cq4oe-benchmark">GitHub</a>)</p>
+				</div>
+
 			</div>
 		</div>
 	</div>
